@@ -24,3 +24,16 @@ body{
     border: 1px solid black;
     
 }
+
+.key{
+    width: 50px;
+    height: 50px;
+}
+
+.enter {
+    width: 100px
+}
+
+.row{
+    margin: 5px;
+}
