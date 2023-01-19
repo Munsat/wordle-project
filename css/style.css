@@ -36,8 +36,12 @@ body{
     height: 50px;
 }
 
-.enter {
+#enter {
     width: 100px
+}
+#enter :disabled {
+    background-color: #ccc;
+
 }
 
 .row{
