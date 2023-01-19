@@ -24,3 +24,5 @@ Project submission for GA flex course
 Do an explanation page.
 
 https://munsat.github.io/wordle-project/
+
+Need to DRY code. Too much repeatation.
