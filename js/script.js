@@ -1,13 +1,25 @@
 const wordOfTheGame = validWords[Math.floor(Math.random() * validWords.length)];
 console.log(wordOfTheGame);
+
+//variables
+userScore = document.querySelector('.score')
+userScore.textContent = localStorage.score
+
+
 let word = "";
 let num = 0;
 let lineComplete = false;
 let greenLength = 0;
+const winnerTexts = ["GOOD JOB!", "WELL DONE", "WAY TO GO!", "WINNER!", "WOW!"];
+
+
+
+//DOM elements
 const allKeys = document.querySelectorAll(".key");
 const enterKey = document.querySelector("#enter");
 const winnerDisplay = document.querySelector(".winner-display");
-const winnerTexts = ["GOOD JOB!", "WELL DONE", "WAY TO GO!", "WINNER!", "WOW!"];
+const nextGame = document.querySelector('.winner-display a')
+
 
 const createLetterBoxes = () => {
   for (let i = 0; i < 6; i++) {
@@ -50,6 +62,15 @@ const checkWinner = (allLetter) => {
         winnerTexts[Math.floor(Math.random() * winnerTexts.length)];
         winnerDisplay.querySelector('a').textContent = 'next level'
       winnerDisplay.style.opacity = 1;
+      winnerDisplay.style.visibility = 'visible'
+      if (localStorage.length){
+        currentScore = parseInt(localStorage.score)
+         currentScore+=1
+         localStorage.score = currentScore
+       }
+      userScore.textContent = localStorage.score
+      winnerDisplay.querySelector('.score-display span').textContent = localStorage.score
+    
     }
   });
   greenLength = 0;
@@ -60,8 +81,15 @@ const checkGameOver = (num) => {
   if (num > 5) {
     winnerDisplay.querySelector("h1").textContent = "GAME OVER";
     winnerDisplay.querySelector('a').textContent = 'start over'
+    winnerDisplay.querySelector('.score-display span').textContent = localStorage.score
     winnerDisplay.style.opacity = 1;
+    winnerDisplay.style.visibility = 'visible'
+    if (localStorage.length){
+      localStorage.score = 0
+    }
   }
+  
+  
 };
 
 //Displays the coloured tiles for each answer
@@ -79,6 +107,10 @@ const displayAnswer = (allLetter) => {
   num++;
   checkWinner(allLetter);
   checkGameOver(num)
+  nextGame.addEventListener('click', ()=>{
+    location.reload()
+  })
+
 };
 
 
@@ -91,29 +123,30 @@ const keyFunction = (e, allLetter) => {
     } else {
       displayAnswer(allLetter);
     }
-  } else if ((e.key >= "a" && e.key <= "z") || (e.getModifierState("CapsLock") && (e.key >= "A" && e.key <= "Z" ) && e.key.length === 1)){
+  } else if (word.length<5 && ((e.key >= "a" && e.key <= "z") || (e.getModifierState("CapsLock") && (e.key >= "A" && e.key <= "Z" ) && e.key.length === 1))){
     word += e.key.toUpperCase();
-  } else if (e.type === "click") {
+  } else if (e.type === "click" && word.length<5) {
     word += e.target.textContent;
   }
 };
 
 const repeatFunction = (e) => {
-  let allLetter = document.querySelectorAll(
-    `.line-holder.row${num} > .word-holder`
-  );
+  let allLetter = document.querySelectorAll(`.line-holder.row${num} > .word-holder`);
   lineComplete = false;
-  keyFunction(e, allLetter);
-  displayLetter(allLetter);
-  checkLetter(word);
+  keyFunction(e, allLetter)
+  if (word.length<=5){
+    
+    displayLetter(allLetter);
+    checkLetter(word);
+  }
+  
+  
   if (lineComplete) {
     word = "";
   }
 };
 
-window.addEventListener(
-  "keyup",
-  (keyHandler = (e) => {
+window.addEventListener("keyup", (keyHandler = (e) => {
     const isNumber = isFinite(e.key);
     if (!isNumber) {
       repeatFunction(e);
@@ -122,9 +155,7 @@ window.addEventListener(
 );
 
 allKeys.forEach((key) => {
-  key.addEventListener(
-    "click",
-    (clickHandler = (e) => {
+  key.addEventListener("click",(clickHandler = (e) => {
       repeatFunction(e);
     })
   );
