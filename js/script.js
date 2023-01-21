@@ -1,4 +1,5 @@
-console.log(validWords[2]);
+const wordOfTheGame = validWords[Math.floor(Math.random()*validWords.length)]
+console.log(wordOfTheGame)
 const createLetterBoxes = () => {
   for (let i = 0; i < 6; i++) {
     const lineHolder = document.createElement("div");
@@ -28,54 +29,58 @@ const displayLetter = () => {
 const checkLetter = () => {
   if (word.length === 5 && validWords.includes(word)) {
     enterKey.disabled = false;
-  }else{
+  } else {
     enterKey.disabled = true;
   }
 };
 
+const displayAnswer = () => {
+  for (i=0;i<word.length;i++){
+    if (wordOfTheGame[i]===word[i]){
+      allLetter[i].style.backgroundColor = 'green'
+    }else if (wordOfTheGame.includes(word[i])){
+      allLetter[i].style.backgroundColor = 'orange'
+    }else{
+      allLetter[i].style.backgroundColor = 'grey'
+    }
+  }
+}
+
+const keyFunction = (e) => {
+  if (e.target.id === "backspace" || e.key === "Backspace") {
+    word = word.slice(0, -1);
+  } else if (e.target.id === "enter" || e.key === "Enter") {
+    if (enterKey.disabled) {
+      e.preventDefault();
+      console.log("key NOT entered");
+    } else {
+      console.log("key entered");
+      displayAnswer()
+    }
+  } else if ((e.key >= "a" && e.key <= "z") || (e.getModifierState('CapsLock') && (e.key >= "A" && e.key <= "Z" && e.key.length ===1))){
+    word += e.key.toUpperCase();
+  }else if (e.type === "click") {
+    word += e.target.textContent;
+  }
+};
+
+
+
 window.addEventListener("keyup", (e) => {
   const isNumber = isFinite(e.key);
   if (!isNumber) {
-    switch (e.key) {
-      case "Backspace":
-        word = word.slice(0, -1);
-        break;
-      case "Enter":
-        if (enterKey.disabled) {
-          e.preventDefault();
-          console.log("key NOT entered");
-        } else {
-          console.log("key entered");
-        }
-        break;
-      default:
-        word += e.key.toUpperCase();
-    }
-
-    displayLetter();
+    keyFunction(e);
     checkLetter();
+    displayLetter();
+    
   }
 });
 
 allKeys.forEach((key) => {
   key.addEventListener("click", (e) => {
-    switch (e.target.id) {
-      case "backspace":
-        word = word.slice(0, -1);
-        break;
-      case "enter":
-        if (enterKey.disabled) {
-          e.preventDefault();
-          console.log("key NOT entered");
-        } else {
-          console.log("key entered");
-        }
-        break;
-      default:
-        word += e.target.textContent;
-    }
-
-    displayLetter();
+    keyFunction(e);
     checkLetter();
+    displayLetter();
+    
   });
 });
