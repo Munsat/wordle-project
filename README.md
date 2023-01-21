@@ -19,7 +19,7 @@ Project submission for GA flex course
 
 ## Things to fix
 - need to add styling
-
+- need to add functionality for keyboard color
 
 
 - Need to DRY code. Too much repeatation.
