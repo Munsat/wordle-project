@@ -20,7 +20,8 @@ userScore = document.querySelector(".score span");
 if (localStorage.score !== null){
   userScore.textContent = localStorage.score;
 }else{
-  localStorage.score = 1
+  localStorage.score = 0
+  userScore.textContent = 0
 }
 
 let word = "";
@@ -70,7 +71,7 @@ const checkWinner = (allLetter) => {
     gameEndDisplay.style.opacity = 1;
     gameEndDisplay.style.visibility = "visible";
     wordDisplay.style.display = 'none';
-    localStorage.score = parseInt(localStorage.score) + 1
+    localStorage.score = Number(localStorage.score) + 1
     userScore.textContent = localStorage.score;
     gameEndDisplay.querySelector(".score-display span").textContent = localStorage.score;
     
