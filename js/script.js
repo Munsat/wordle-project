@@ -67,9 +67,12 @@ const checkWinner = (allLetter) => {
     gameEndDisplay.style.opacity = 1;
     gameEndDisplay.style.visibility = "visible";
     wordDisplay.style.display = 'none';
-    localStorage.score = parseInt(localStorage.score) + 1
-    userScore.textContent = localStorage.score;
-    gameEndDisplay.querySelector(".score-display span").textContent = localStorage.score;
+    if (localStorage.length!==0){
+      localStorage.score = parseInt(localStorage.score) + 1
+      userScore.textContent = localStorage.score;
+      gameEndDisplay.querySelector(".score-display span").textContent = localStorage.score;
+    }
+    
   };
   greenLength = 0;
 };
@@ -84,7 +87,9 @@ const checkGameOver = (rowNum) => {
     wordDisplay.style.display = 'block';
     wordDisplay.querySelector('span').textContent = wordOfTheGame
     gameEndDisplay.style.visibility = "visible";
-    localStorage.score = 0;
+    if (localStorage.length!==0){
+      localStorage.score = 0;
+    }
   }
 };
 
