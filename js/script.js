@@ -17,7 +17,7 @@ createLetterBoxes();
 
 //Variables
 userScore = document.querySelector(".score span");
-if (localStorage.score !== null){
+if (parseInt(localStorage.score)){
   userScore.textContent = localStorage.score;
 }else{
   localStorage.score = 0
@@ -71,9 +71,12 @@ const checkWinner = (allLetter) => {
     gameEndDisplay.style.opacity = 1;
     gameEndDisplay.style.visibility = "visible";
     wordDisplay.style.display = 'none';
-    localStorage.score = Number(localStorage.score) + 1
-    userScore.textContent = localStorage.score;
-    gameEndDisplay.querySelector(".score-display span").textContent = localStorage.score;
+    if (parseInt(localStorage.score)){
+      localStorage.score = parseInt(localStorage.score) + 1
+      userScore.textContent = localStorage.score;
+      gameEndDisplay.querySelector(".score-display span").textContent = localStorage.score;
+    }
+    
     
     
   };
