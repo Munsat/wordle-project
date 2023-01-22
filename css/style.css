@@ -3,10 +3,14 @@
 
 body{
     font-family: 'Syne Mono', monospace;
+    background-color: black;
+    color: white;
 }
 
 h1{
     font-family: 'Maven Pro', sans-serif;
+    font-size: 3rem;
+    margin: 1.5rem 0 0 0
 }
 
 
@@ -40,17 +44,26 @@ h1{
     width: 80px;
     height: 80px;
     border: 1px solid black;
-    border-radius: 10%;
+    background-color: rgb(230, 211, 220);
+    color: black;
+    border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 30px;
+    transition: transform 500ms ease-in-out;
 
 }
+
+
 
 .key {
     width: 50px;
     height: 50px;
+    border: none;
+    background-color: rgb(230, 211, 220);
+    transition: background-color 250ms ease-in-out;
+    border-radius: 10px;
 }
 
 #enter {
@@ -66,7 +79,7 @@ h1{
     margin: 5px;
 }
 
-.winner-display {
+.game-end-display {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -78,10 +91,32 @@ h1{
     opacity: 0;
     visibility: hidden;
     z-index: 10;
-    transition: opacity 250ms ease-in-out;
+    transition: opacity 500ms ease-in-out;
+}
+
+.score-display span{
+    color: rgb(96, 159, 141);
+}
+.score-text{
+    color: rgb(96, 159, 141);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
 }
 
 .title-large{
     font-size: 4rem;
     margin: 0;
+}
+
+.score{
+    font-size: 1rem;
+}
+
+.score>h2{
+    margin: 0.5rem;
+}
+
+.word-display{
+    display: none;
 }
