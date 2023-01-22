@@ -17,7 +17,7 @@ createLetterBoxes();
 
 //Variables
 userScore = document.querySelector(".score span");
-if (!isNaN(parseInt(localStorage.score))){
+if (!isNaN(Number(localStorage.score))){
   userScore.textContent = localStorage.score;
 }else{
   localStorage.score = 0
@@ -71,8 +71,8 @@ const checkWinner = (allLetter) => {
     gameEndDisplay.style.opacity = 1;
     gameEndDisplay.style.visibility = "visible";
     wordDisplay.style.display = 'none';
-    if (!isNaN(parseInt(localStorage.score))){
-      localStorage.score = parseInt(localStorage.score) + 1
+    if (!isNaN(Number(localStorage.score))){
+      localStorage.score = Number(localStorage.score) + 1
       userScore.textContent = localStorage.score;
       gameEndDisplay.querySelector(".score-display span").textContent = localStorage.score;
     }
