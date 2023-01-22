@@ -1,6 +1,5 @@
 const wordOfTheGame = validWords[Math.floor(Math.random() * validWords.length)];
 console.log(wordOfTheGame);
-localStorage.clear()
 //Creates the display tiles
 const createLetterBoxes = () => {
   for (let i = 0; i < 6; i++) {
