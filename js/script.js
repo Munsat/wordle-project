@@ -1,6 +1,6 @@
 const wordOfTheGame = validWords[Math.floor(Math.random() * validWords.length)];
 console.log(wordOfTheGame);
-
+localStorage.clear()
 //Creates the display tiles
 const createLetterBoxes = () => {
   for (let i = 0; i < 6; i++) {
@@ -18,7 +18,7 @@ createLetterBoxes();
 
 //Variables
 userScore = document.querySelector(".score span");
-if (localStorage.score){
+if (localStorage.score !== null){
   userScore.textContent = localStorage.score;
 }
 
@@ -69,7 +69,7 @@ const checkWinner = (allLetter) => {
     gameEndDisplay.style.opacity = 1;
     gameEndDisplay.style.visibility = "visible";
     wordDisplay.style.display = 'none';
-    if (localStorage.score){
+    if (localStorage.score !== null){
       localStorage.score = parseInt(localStorage.score) + 1
       userScore.textContent = localStorage.score;
       gameEndDisplay.querySelector(".score-display span").textContent = localStorage.score;
@@ -89,7 +89,7 @@ const checkGameOver = (rowNum) => {
     wordDisplay.style.display = 'block';
     wordDisplay.querySelector('span').textContent = wordOfTheGame
     gameEndDisplay.style.visibility = "visible";
-    if (localStorage.score){
+    if (localStorage.score !== null){
       localStorage.score = 0;
     }
   }
