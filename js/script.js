@@ -16,9 +16,7 @@ const createLetterBoxes = () => {
 createLetterBoxes();
 //Variables
 userScore = document.querySelector(".score span");
-console.log(!isNaN(Number(localStorage.score)))
-console.log(localStorage.score)
-if (!isNaN(Number(localStorage.score))){
+if (!isNaN(parseInt(localStorage.score))){
   userScore.textContent = localStorage.score;
   
 }else{
