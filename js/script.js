@@ -17,12 +17,16 @@ createLetterBoxes();
 
 //Variables
 userScore = document.querySelector(".score span");
+console.log(!isNaN(Number(localStorage.score)))
+console.log(localStorage.score)
 if (!isNaN(Number(localStorage.score))){
   userScore.textContent = localStorage.score;
+  
 }else{
   localStorage.score = 0
   userScore.textContent = 0
 }
+
 
 let word = "";
 let rowNum = 0;
