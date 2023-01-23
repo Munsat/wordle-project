@@ -16,12 +16,14 @@ Project submission for GA flex course
 1. Once all lines are filled, and the word is not right, then show GAMEOVER, otherwise show YOU'VE WON!
 
 1. Keep track of score 
-1. need to add styling
 1. Added functionality for keyboard color
+1. Added  soundeffects
+1. Share result online
 
 ## Things to fix
 
 
+1. need to add styling
 
 - Need to DRY code. Too much repeatation.
 
@@ -33,7 +35,6 @@ Project submission for GA flex course
    - Easy: 10 guesses
 
 
-1. Maybe add in soundeffects at the end
+
 1. Do an explanation page.
-1. Share result online
 https://munsat.github.io/wordle-project/

@@ -1,5 +1,3 @@
-const wordOfTheGame = validWords[Math.floor(Math.random() * validWords.length)];
-console.log(wordOfTheGame);
 //Creates the display tiles
 const createLetterBoxes = () => {
   for (let i = 0; i < 6; i++) {
@@ -15,23 +13,26 @@ const createLetterBoxes = () => {
 };
 createLetterBoxes();
 
-
 //Variables
+const wordOfTheGame = validWords[Math.floor(Math.random() * validWords.length)];
 let word = "";
 let rowNum = 0;
 let lineComplete = false;
 let greenLength = 0;
+let finalScore = 0
 const winnerTexts = ["GOOD JOB!", "WELL DONE", "WAY TO GO!", "WINNER!", "WOW!"];
 const green = 'rgb(96, 159, 141)'
 const orange = 'rgb(190, 101, 63)'
 const grey = 'rgb(120, 120, 120)'
+const gameURL = 'https://munsat.github.io/wordle-project/'
+
+console.log(wordOfTheGame);
+
 //Audio
 const winSound =new Audio('./audio/gamewin.wav')
 const loseSound =new Audio('./audio/gameover.wav')
 const keyStroke = new Audio('./audio/keystroke.wav')
 const enterKeySound = new Audio('./audio/incorrect.wav')
-
-
 
 
 //DOM elements
@@ -42,6 +43,26 @@ const gameEndDisplay = document.querySelector(".game-end-display");
 const nextGame = document.querySelector(".game-end-display a");
 const wordDisplay = document.querySelector('.word-display')
 const allRows = document.querySelectorAll('.line-holder')
+const socialIconFB = document.querySelector('.fa-facebook')
+const socialIconTwitter = document.querySelector('.fa-twitter')
+
+
+//Social Media PopUp Window
+const windowParams = `menubar=no,toolbar=no,status=no,resizable=yes,width=570,height=550`
+socialIconFB.addEventListener('click', ()=>{
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${gameURL}`,'_blank', windowParams)
+})
+socialIconTwitter.addEventListener('click', ()=>{
+  let message = ''
+  if (finalScore>0){
+     message= `Check out My Wordle. I scored ${finalScore} points!`
+  }else{
+    message=`Check out My Wordle. I scored ${localStorage.score} points!`
+  }
+  
+  window.open(`https://twitter.com/intent/tweet?url=${gameURL}&text=${message}`,'_blank', windowParams)
+})
+
 
 //Local Storage 
 if (!isNaN(parseInt(localStorage.score))){
@@ -105,6 +126,7 @@ const checkGameOver = (rowNum) => {
     wordDisplay.querySelector('span').textContent = wordOfTheGame
     gameEndDisplay.style.visibility = "visible";
     loseSound.play()
+    finalScore = localStorage.score
     localStorage.score = 0;
     
   }
