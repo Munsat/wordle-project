@@ -29,6 +29,7 @@ h1{
     flex-direction: column;
     position: relative;
     gap: 5px;
+
 }
 
 .line-holder {
@@ -62,8 +63,13 @@ h1{
     height: 50px;
     border: none;
     background-color: rgb(230, 211, 220);
-    transition: background-color 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
     border-radius: 10px;
+    cursor: pointer;
+
+}
+.key:active{
+    background-color: rgb(71, 70, 71);
 }
 
 #enter {

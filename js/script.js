@@ -14,17 +14,9 @@ const createLetterBoxes = () => {
   }
 };
 createLetterBoxes();
+
+
 //Variables
-userScore = document.querySelector(".score span");
-if (!isNaN(parseInt(localStorage.score))){
-  userScore.textContent = localStorage.score;
-  
-}else{
-  localStorage.score = 0
-  userScore.textContent = 0
-}
-
-
 let word = "";
 let rowNum = 0;
 let lineComplete = false;
@@ -33,14 +25,31 @@ const winnerTexts = ["GOOD JOB!", "WELL DONE", "WAY TO GO!", "WINNER!", "WOW!"];
 const green = 'rgb(96, 159, 141)'
 const orange = 'rgb(190, 101, 63)'
 const grey = 'rgb(120, 120, 120)'
+//Audio
+const winSound =new Audio('./audio/gamewin.wav')
+const loseSound =new Audio('./audio/gameover.wav')
+const keyStroke = new Audio('./audio/keystroke.wav')
+const enterKeySound = new Audio('./audio/incorrect.wav')
+
+
+
 
 //DOM elements
+userScore = document.querySelector(".score span");
 const allKeys = document.querySelectorAll(".key");
 const enterKey = document.querySelector("#enter");
 const gameEndDisplay = document.querySelector(".game-end-display");
 const nextGame = document.querySelector(".game-end-display a");
 const wordDisplay = document.querySelector('.word-display')
 const allRows = document.querySelectorAll('.line-holder')
+
+//Local Storage 
+if (!isNaN(parseInt(localStorage.score))){
+  userScore.textContent = localStorage.score;
+}else{
+  localStorage.score = 0
+  userScore.textContent = 0
+}
 
 
 //Displays letter for each line
@@ -72,16 +81,17 @@ const checkWinner = (allLetter) => {
     gameEndDisplay.style.opacity = 1;
     gameEndDisplay.style.visibility = "visible";
     wordDisplay.style.display = 'none';
+    winSound.play()
     if (!isNaN(parseInt(localStorage.score))){
       localStorage.score = parseInt(localStorage.score) + 1
       userScore.textContent = localStorage.score;
       gameEndDisplay.querySelector(".score-display span").textContent = localStorage.score;
     }
-    
-    
-    
+  }else if (rowNum < allRows.length-1){
+    enterKeySound.play()
   };
   greenLength = 0;
+  
 };
 
 //Checks if the user has lost the round
@@ -94,6 +104,7 @@ const checkGameOver = (rowNum) => {
     wordDisplay.style.display = 'block';
     wordDisplay.querySelector('span').textContent = wordOfTheGame
     gameEndDisplay.style.visibility = "visible";
+    loseSound.play()
     localStorage.score = 0;
     
   }
@@ -139,6 +150,8 @@ const displayAnswer = (allLetter) => {
 //Attaches functionality to keyboard keys and clicks
 const keyFunction = (e, allLetter) => {
   if (e.target.id === "backspace" || e.key === "Backspace") {
+    keyStroke.load()
+    keyStroke.play()
     word = word.slice(0, -1);
   } else if (e.target.id === "enter" || e.key === "Enter") {
     if (enterKey.disabled) {
@@ -149,8 +162,12 @@ const keyFunction = (e, allLetter) => {
     }
   } else if (
     word.length < 5 && ((e.key >= "a" && e.key <= "z") || (e.getModifierState("CapsLock") && (e.key >= "A" && e.key <= "Z") && e.key.length === 1))) {
-    word += e.key.toUpperCase();
+      keyStroke.load()
+      keyStroke.play()
+      word += e.key.toUpperCase();
   } else if (e.type === "click" && word.length < 5) {
+    keyStroke.load()
+    keyStroke.play()
     word += e.target.textContent;
   }
 };
