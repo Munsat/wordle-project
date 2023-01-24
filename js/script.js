@@ -20,6 +20,7 @@ let rowNum = 0;
 let lineComplete = false;
 let greenLength = 0;
 let finalScore = 0
+let isWinner = false
 const winnerTexts = ["GOOD JOB!", "WELL DONE", "WAY TO GO!", "WINNER!", "WOW!"];
 const green = 'rgb(96, 159, 141)'
 const orange = 'rgb(190, 101, 63)'
@@ -103,6 +104,7 @@ const checkWinner = (allLetter) => {
     gameEndDisplay.style.visibility = "visible";
     wordDisplay.style.display = 'none';
     winSound.play()
+    isWinner = true
     if (!isNaN(parseInt(localStorage.score))){
       localStorage.score = parseInt(localStorage.score) + 1
       userScore.textContent = localStorage.score;
@@ -117,7 +119,7 @@ const checkWinner = (allLetter) => {
 
 //Checks if the user has lost the round
 const checkGameOver = (rowNum) => {
-  if (rowNum >= allRows.length-1) {
+  if (rowNum >= allRows.length-1 && !isWinner) {
     gameEndDisplay.querySelector("h1").textContent = "GAME OVER";
     gameEndDisplay.querySelector("a").textContent = "Start Over";
     gameEndDisplay.querySelector(".score-display span").textContent = localStorage.score;
@@ -128,7 +130,6 @@ const checkGameOver = (rowNum) => {
     loseSound.play()
     finalScore = localStorage.score
     localStorage.score = 0;
-    
   }
 };
 
