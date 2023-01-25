@@ -51,14 +51,22 @@ const socialIconTwitter = document.querySelector('.fa-twitter')
 //Social Media PopUp Window
 const windowParams = `menubar=no,toolbar=no,status=no,resizable=yes,width=570,height=550`
 socialIconFB.addEventListener('click', ()=>{
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${gameURL}`,'_blank', windowParams)
+  let message = ''
+  if (finalScore>0){
+     message= `IScored${finalScore}Points!`
+  }else{
+    message=`IScored${localStorage.getItem('score')}Points!`
+  }
+  window.open(`https://www.facebook.com/dialog/share?app_id=875082810399994&display=popup&hashtag=%23CheckOutMyWordle_${message}&href=https://munsat.github.io/wordle-project/&redirect_uri=https://munsat.github.io/wordle-project/`,'_blank', windowParams)
 })
+
+
 socialIconTwitter.addEventListener('click', ()=>{
   let message = ''
   if (finalScore>0){
      message= `Check out My Wordle. I scored ${finalScore} points!`
   }else{
-    message=`Check out My Wordle. I scored ${localStorage.score} points!`
+    message=`Check out My Wordle. I scored ${localStorage.getItem('score')} points!`
   }
   
   window.open(`https://twitter.com/intent/tweet?url=${gameURL}&text=${message}`,'_blank', windowParams)
@@ -66,10 +74,10 @@ socialIconTwitter.addEventListener('click', ()=>{
 
 
 //Local Storage 
-if (!isNaN(parseInt(localStorage.score))){
-  userScore.textContent = localStorage.score;
+if (!isNaN(parseInt(localStorage.getItem('score')))){
+  userScore.textContent = localStorage.getItem('score');
 }else{
-  localStorage.score = 0
+  localStorage.setItem('score',0) 
   userScore.textContent = 0
 }
 
@@ -105,10 +113,10 @@ const checkWinner = (allLetter) => {
     wordDisplay.style.display = 'none';
     winSound.play()
     isWinner = true
-    if (!isNaN(parseInt(localStorage.score))){
-      localStorage.score = parseInt(localStorage.score) + 1
-      userScore.textContent = localStorage.score;
-      gameEndDisplay.querySelector(".score-display span").textContent = localStorage.score;
+    if (!isNaN(parseInt(localStorage.getItem('score')))){
+      localStorage.setItem('score', parseInt(localStorage.getItem('score')) + 1)
+      userScore.textContent = localStorage.getItem('score');
+      gameEndDisplay.querySelector(".score-display span").textContent = localStorage.getItem('score');
     }
   }else if (rowNum < allRows.length-1){
     enterKeySound.play()
@@ -122,14 +130,14 @@ const checkGameOver = (rowNum) => {
   if (rowNum >= allRows.length-1 && !isWinner) {
     gameEndDisplay.querySelector("h1").textContent = "GAME OVER";
     gameEndDisplay.querySelector("a").textContent = "Start Over";
-    gameEndDisplay.querySelector(".score-display span").textContent = localStorage.score;
+    gameEndDisplay.querySelector(".score-display span").textContent = localStorage.getItem('score');
     gameEndDisplay.style.opacity = 1;
     wordDisplay.style.display = 'block';
     wordDisplay.querySelector('span').textContent = wordOfTheGame
     gameEndDisplay.style.visibility = "visible";
     loseSound.play()
-    finalScore = localStorage.score
-    localStorage.score = 0;
+    finalScore = localStorage.getItem('score')
+    localStorage.setItem('score', 0)
   }
 };
 
@@ -171,7 +179,7 @@ const displayAnswer = (allLetter) => {
 
 
 //Attaches functionality to keyboard keys and clicks
-const keyFunction = (e, allLetter) => {
+const keyAction = (e, allLetter) => {
   if (e.target.id === "backspace" || e.key === "Backspace") {
     keyStroke.load()
     keyStroke.play()
@@ -196,10 +204,10 @@ const keyFunction = (e, allLetter) => {
 };
 
 //Main function that is to be repeated for each row
-const repeatFunction = (e) => {
+const repeatGame = (e) => {
   let allLetter = document.querySelectorAll(`.line-holder.row${rowNum} > .word-holder`);
   lineComplete = false;
-  keyFunction(e, allLetter);
+  keyAction(e, allLetter);
 
   if (word.length <= 5) {
     displayLetter(allLetter);
@@ -214,14 +222,14 @@ const repeatFunction = (e) => {
 window.addEventListener("keyup",(keyHandler = (e) => {
     const isNumber = isFinite(e.key);
     if (!isNumber) {
-      repeatFunction(e);
+      repeatGame(e);
     }
   })
 );
 
 allKeys.forEach((key) => {
   key.addEventListener("click",(clickHandler = (e) => {
-    repeatFunction(e);
+    repeatGame(e);
     })
   );
 });
