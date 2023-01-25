@@ -14,6 +14,7 @@ body{
     background-color: black;
     color: white;
     margin: 0;
+    transition: all 300ms ease-in-out;
 }
 
 h1{
@@ -33,6 +34,11 @@ nav{
     align-items: center;
     justify-content: center;
     margin: 0 1rem;
+}
+
+.light-theme{
+    background-color: white;
+    color: black;
 }
 .container {
     max-width: 960px;
@@ -66,7 +72,6 @@ nav{
 .word-holder {
     width: 5rem;
     height: 5rem;
-    border: 1px solid black;
     background-color: rgb(230, 211, 220);
     color: black;
     border-radius: 15px;
@@ -183,11 +188,12 @@ nav{
     color:  rgb(96, 159, 141);
 }
 
-.instruction{
+.instruction, .setting{
     cursor: pointer;
     transition: all 200ms ease-in-out;
+    
 }
-.instruction:hover{
+.instruction:hover, .setting:hover{
     scale:1.2;
 }
 
@@ -210,6 +216,7 @@ nav{
 .exp-toggle-display{
     visibility: visible;
     opacity: 1;
+    color: white;
 }
 
 .exp-tile-container{

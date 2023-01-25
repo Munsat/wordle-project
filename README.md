@@ -34,6 +34,7 @@ Project submission for GA flex course
    - Hard: 3 guesses
    - Medium: 6 guesses
    - Easy: 10 guesses
+1. toggle dark-light mode   
 
 
 

@@ -54,6 +54,7 @@ const cancelBtn = document.querySelector('.cancel-btn')
 const invalidWordAlert = document.querySelector('.invalid-word-alert')
 const newGameBtn = document.querySelector('.new-game')
 const highestScoreText = document.querySelector('.highest-score span')
+const settingBtn = document.querySelector('.setting') 
 
 
 //Social Media PopUp Window
@@ -280,5 +281,8 @@ cancelBtn.addEventListener('click', toggleDisplay)
 newGameBtn.addEventListener('click', ()=>{
   location.reload()
   localStorage.setItem('score', 0)
+})
 
+settingBtn.addEventListener('click', ()=>{
+  document.body.classList.toggle('light-theme')
 })
