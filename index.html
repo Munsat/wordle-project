@@ -20,7 +20,7 @@
         <h1>MY WORDLE</h1>
         <nav>
           <div class="score">
-            <h2>Score: <span>000</span></h2>
+            <h2 class="current-score">Score: <span>000</span></h2>
             <h2 class="highest-score">Highest Score: <span>00</span></h2>
           </div>
           <i class="fa-solid fa-circle-info fa-2xl instruction"></i>
@@ -38,15 +38,15 @@
             <li>The colour of the tiles will change depending on how close your guess was to the word.</li>
             <li class="exp-tile-container">
               <div class="word-holder exp-tile exp-tile-correct">W</div>
-              <div>= The letter is in the word and in the correct spot</div>
+              <div class="exp-tile-text">= The letter is in the word and in the correct spot.</div>
             </li>
             <li class="exp-tile-container">
               <div class="word-holder exp-tile exp-tile-inword">W</div>
-              <div>= The letter is in the word but in the wrong spot</div>
+              <div class="exp-tile-text">= The letter is in the word but in the wrong spot.</div>
             </li>
             <li class="exp-tile-container">
               <div class="word-holder exp-tile exp-tile-notinword">W</div>
-              <div>= The letter is not in the word at all</div>
+              <div class="exp-tile-text">= The letter is not in the word at all.</div>
             </li>
           </ol>
         </section>
