@@ -20,6 +20,7 @@ let rowNum = 0;
 let lineComplete = false;
 let greenLength = 0;
 let finalScore = 0
+let highestScore = 0
 let isWinner = false
 const winnerTexts = ["GOOD JOB!", "WELL DONE", "WAY TO GO!", "WINNER!", "WOW!"];
 const green = 'rgb(96, 159, 141)'
@@ -34,6 +35,7 @@ const winSound =new Audio('./audio/gamewin.wav')
 const loseSound =new Audio('./audio/gameover.wav')
 const keyStroke = new Audio('./audio/keystroke.wav')
 const enterKeySound = new Audio('./audio/incorrect.wav')
+const invalidWord = new Audio('./audio/wrongword.wav')
 
 
 //DOM elements
@@ -49,6 +51,9 @@ const socialIconTwitter = document.querySelector('.fa-twitter')
 const instruction = document.querySelector('.instruction')
 const instructionDisplay = document.querySelector('.explanation-display')
 const cancelBtn = document.querySelector('.cancel-btn')
+const invalidWordAlert = document.querySelector('.invalid-word-alert')
+const newGameBtn = document.querySelector('.new-game')
+const highestScoreText = document.querySelector('.highest-score span')
 
 
 //Social Media PopUp Window
@@ -56,9 +61,9 @@ const windowParams = `menubar=no,toolbar=no,status=no,resizable=yes,width=570,he
 socialIconFB.addEventListener('click', ()=>{
   let message = ''
   if (finalScore>0){
-     message= `IScored${finalScore}Points!`
+     message= `MyScored${finalScore}Points`
   }else{
-    message=`IScored${localStorage.getItem('score')}Points!`
+    message=`IScored${localStorage.getItem('score')}Points`
   }
   window.open(`https://www.facebook.com/dialog/share?app_id=875082810399994&display=popup&hashtag=%23CheckOutMyWordle_${message}&href=https://munsat.github.io/wordle-project/&redirect_uri=https://munsat.github.io/wordle-project/`,'_blank', windowParams)
 })
@@ -76,12 +81,22 @@ socialIconTwitter.addEventListener('click', ()=>{
 })
 
 
-//Local Storage 
+//Local Storage for Score
 if (!isNaN(parseInt(localStorage.getItem('score')))){
   userScore.textContent = localStorage.getItem('score');
+  
 }else{
   localStorage.setItem('score',0) 
   userScore.textContent = 0
+}
+
+//Local Storage for HighScore
+if (!isNaN(parseInt(localStorage.getItem('highestScore')))){
+  highestScoreText.textContent = localStorage.getItem('highestScore');
+  
+}else{
+  localStorage.setItem('highestScore',0) 
+  highestScoreText.textContent = 0
 }
 
 
@@ -94,11 +109,14 @@ const displayLetter = (allLetter) => {
 
 //Checks whether the word is part of the vocab
 const checkLetter = (word) => {
+  
   if (word.length === 5 && validWords.includes(word)) {
     enterKey.disabled = false;
+
   } else {
     enterKey.disabled = true;
   }
+  
 };
 
 //Checks if the user has won the round
@@ -118,7 +136,11 @@ const checkWinner = (allLetter) => {
     isWinner = true
     if (!isNaN(parseInt(localStorage.getItem('score')))){
       localStorage.setItem('score', parseInt(localStorage.getItem('score')) + 1)
+      if (parseInt(localStorage.getItem('highestScore'))<parseInt(localStorage.getItem('score'))){
+        localStorage.setItem('highestScore',localStorage.getItem('score'))
+      }
       userScore.textContent = localStorage.getItem('score');
+      highestScoreText.textContent = localStorage.getItem('highestScore')
       gameEndDisplay.querySelector(".score-display span").textContent = localStorage.getItem('score');
     }
   }else if (rowNum < allRows.length-1){
@@ -183,6 +205,7 @@ const displayAnswer = (allLetter) => {
 
 //Attaches functionality to keyboard keys and clicks
 const keyAction = (e, allLetter) => {
+ 
   if (e.target.id === "backspace" || e.key === "Backspace") {
     keyStroke.load()
     keyStroke.play()
@@ -190,6 +213,15 @@ const keyAction = (e, allLetter) => {
   } else if (e.target.id === "enter" || e.key === "Enter") {
     if (enterKey.disabled) {
       e.preventDefault();
+      allRows[rowNum].classList.add('row-shake')
+      invalidWordAlert.style.visibility = 'visible'
+      invalidWordAlert.style.opacity = 1
+      invalidWord.load()
+      invalidWord.play()
+      setTimeout(()=>{allRows[rowNum].classList.remove('row-shake')
+      invalidWordAlert.style.visibility = 'hidden'
+      invalidWordAlert.style.opacity = 0
+    },500) 
     } else {
       displayAnswer(allLetter);
       enterKey.disabled = true;
@@ -204,6 +236,7 @@ const keyAction = (e, allLetter) => {
     keyStroke.play()
     word += e.target.textContent;
   }
+  
 };
 
 //Main function that is to be repeated for each row
@@ -243,5 +276,9 @@ allKeys.forEach((key) => {
 });
 
 instruction.addEventListener('click', toggleDisplay)
-
 cancelBtn.addEventListener('click', toggleDisplay)
+newGameBtn.addEventListener('click', ()=>{
+  location.reload()
+  localStorage.setItem('score', 0)
+
+})

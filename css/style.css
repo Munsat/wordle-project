@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&family=Syne+Mono&display=swap');
 
+@keyframes shake{
+    0%,100% {transform: translateX(0px)}
+    20%,80% {transform: translateX(-2px)}
+    30%,70% {transform: translateX(1px)}
+    40%,60% {transform: translateX(-1px)}
+    50% {transform: translateX(2px)}
+}
 
 body{
     font-family: 'Syne Mono', monospace;
@@ -101,6 +108,9 @@ nav{
     gap: 5px;
     margin: 5px;
 }
+.row-shake{
+    animation: shake 0.5s;
+}
 
 .game-end-display {
     position: absolute;
@@ -125,6 +135,21 @@ nav{
     cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
+    display: inline-block;
+    transition: scale 250ms ease-in-out;
+}
+
+.new-game{
+    color: rgb(190, 101, 63);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+    display: inline-block;
+    transition: scale 250ms ease-in-out;
+}
+
+.new-game:hover, .score-text:hover {
+    scale: 1.1;
 }
 
 .title-large{
@@ -164,17 +189,19 @@ nav{
 }
 
 .explanation-display{
-    min-width: 400px;
+    min-width: 550px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(60, 60, 60, 0.9);
+    z-index: 20;
     padding: 3rem 5rem;
     border-radius: 20px;
     visibility: hidden;
     opacity: 0;
     transition: all 500ms ease-in-out;
+
    
 }
 .exp-toggle-display{
@@ -217,8 +244,22 @@ nav{
     transition: all 200ms ease-in-out;
     cursor: pointer;
 }
+
+
 .cancel-btn:hover{
     scale: 1.5;
-
-    
 }
+
+.invalid-word-alert{
+    display: block;
+    background-color: #ccc;
+    color: black;
+    padding: .2rem;
+    width: 10rem;
+    border-radius: 5px;
+    margin: auto;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 150ms ease-in-out;
+}
+

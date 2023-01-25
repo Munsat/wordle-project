@@ -19,6 +19,7 @@ Project submission for GA flex course
 1. Added functionality for keyboard color
 1. Added  soundeffects
 1. Share result online
+1. Did an explanation page.
 
 ## Things to fix
 
@@ -36,5 +37,6 @@ Project submission for GA flex course
 
 
 
-1. Do an explanation page.
+
 https://munsat.github.io/wordle-project/
+https://freesound.org/
