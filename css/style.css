@@ -29,6 +29,7 @@ nav{
 .container {
     width: 960px;
     width: 100%;
+    min-height: 100vh;
     margin: auto;
     justify-content: center;
     text-align: center;
@@ -93,6 +94,11 @@ nav{
 }
 
 .row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
     margin: 5px;
 }
 
@@ -151,15 +157,20 @@ nav{
 
 .instruction{
     cursor: pointer;
+    transition: all 200ms ease-in-out;
+}
+.instruction:hover{
+    scale:1.2;
 }
 
 .explanation-display{
+    min-width: 400px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(60, 60, 60, 0.9);
-    padding: 4rem 5rem;
+    padding: 3rem 5rem;
     border-radius: 20px;
     visibility: hidden;
     opacity: 0;
@@ -197,4 +208,17 @@ nav{
 
 .exp-tile-notinword{
     background-color:rgb(120, 120, 120)
+}
+
+.cancel-btn{
+    position: absolute;
+    right:5%;
+    top:5%;
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+}
+.cancel-btn:hover{
+    scale: 1.5;
+
+    
 }

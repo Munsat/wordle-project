@@ -48,6 +48,7 @@ const socialIconFB = document.querySelector('.fa-facebook')
 const socialIconTwitter = document.querySelector('.fa-twitter')
 const instruction = document.querySelector('.instruction')
 const instructionDisplay = document.querySelector('.explanation-display')
+const cancelBtn = document.querySelector('.cancel-btn')
 
 
 //Social Media PopUp Window
@@ -220,6 +221,11 @@ const repeatGame = (e) => {
   }
 };
 
+//Toggle instruction display
+const toggleDisplay = () =>{
+  instructionDisplay.classList.toggle('exp-toggle-display')
+}
+
 //EVENT LISTENER
 window.addEventListener("keyup",(keyHandler = (e) => {
     const isNumber = isFinite(e.key);
@@ -236,6 +242,6 @@ allKeys.forEach((key) => {
   );
 });
 
-instruction.addEventListener('click', ()=>{
-  instructionDisplay.classList.toggle('exp-toggle-display')
-})
+instruction.addEventListener('click', toggleDisplay)
+
+cancelBtn.addEventListener('click', toggleDisplay)
