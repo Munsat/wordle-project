@@ -5,6 +5,7 @@ body{
     font-family: 'Syne Mono', monospace;
     background-color: black;
     color: white;
+    margin: 0;
 }
 
 h1{
@@ -13,9 +14,20 @@ h1{
     margin: 1.5rem 0 0 0
 }
 
+li{
+    text-align: left;
+    line-height: 2;
+}
 
+nav{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
 .container {
-    max-width: 900px;
+    width: 960px;
     width: 100%;
     margin: auto;
     justify-content: center;
@@ -42,8 +54,8 @@ h1{
 }
 
 .word-holder {
-    width: 80px;
-    height: 80px;
+    width: 5rem;
+    height: 5rem;
     border: 1px solid black;
     background-color: rgb(230, 211, 220);
     color: black;
@@ -57,10 +69,9 @@ h1{
 }
 
 
-
 .key {
-    width: 50px;
-    height: 50px;
+    width: 3rem;
+    height: 3rem;
     border: none;
     background-color: rgb(230, 211, 220);
     transition: all 250ms ease-in-out;
@@ -138,11 +149,52 @@ h1{
     color:  rgb(96, 159, 141);
 }
 
+.instruction{
+    cursor: pointer;
+}
+
 .explanation-display{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: black;
+    background-color: rgba(60, 60, 60, 0.9);
     padding: 4rem 5rem;
+    border-radius: 20px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 500ms ease-in-out;
+   
+}
+.exp-toggle-display{
+    visibility: visible;
+    opacity: 1;
+}
+
+.exp-tile-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+}
+
+.exp-tile{
+    scale: 0.7;
+    transition: transform 250ms ease-in-out;
+}
+
+.exp-tile:hover{
+    transform: rotateY(360deg);
+}
+
+.exp-tile-correct{
+    background-color:rgb(96, 159, 141)
+}
+
+.exp-tile-inword{
+    background-color:rgb(190, 101, 63)
+}
+
+.exp-tile-notinword{
+    background-color:rgb(120, 120, 120)
 }

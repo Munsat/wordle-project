@@ -18,9 +18,13 @@
     <div class="container">
       <header>
         <h1>MY WORDLE</h1>
-        <div class="score">
-            <h2>Score: <span>000</span> </h2>
+        <nav>
+          <div class="score">
+            <h2>Score: <span>000</span></h2>
         </div>
+        <i class="fa-solid fa-circle-info fa-2xl instruction"></i>
+        </nav>
+        
       </header>
       <section class="display-box">
         <section class="game-end-display">
@@ -72,14 +76,25 @@
         </div>
       </section>
       <section class="explanation-display">
-          <h3>How to play:</h3>
-          <h4>Guess the word in 6 chances.</h4>
-          <ol>
-            <li>Each guess has to be a valid 5 letter word.</li>
-            <li>The colour of the tiles will change depending on how close your guess was to the word.</li>
-            <li></li>
-          </ol>
-        </section>
+        <h2>How to play:</h2>
+        <h3>Guess the word in 6 chances.</h3>
+        <ol>
+          <li>Each guess has to be a valid 5 letter word.</li>
+          <li>The colour of the tiles will change depending on how close your guess was to the word.</li>
+          <li class="exp-tile-container">
+            <div class="word-holder exp-tile exp-tile-correct">W</div>
+            <div>= The letter is in the word and in the correct spot</div>
+          </li>
+          <li class="exp-tile-container">
+            <div class="word-holder exp-tile exp-tile-inword">W</div>
+            <div>= The letter is in the word but in the wrong spot</div>
+          </li>
+          <li class="exp-tile-container">
+            <div class="word-holder exp-tile exp-tile-notinword">W</div>
+            <div>= The letter is not in the word at all</div>
+          </li>
+        </ol>
+      </section>
     </div>
   </body>
 </html>

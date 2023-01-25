@@ -24,7 +24,7 @@ let isWinner = false
 const winnerTexts = ["GOOD JOB!", "WELL DONE", "WAY TO GO!", "WINNER!", "WOW!"];
 const green = 'rgb(96, 159, 141)'
 const orange = 'rgb(190, 101, 63)'
-const grey = 'rgb(120, 120, 120)'
+const grey = ''
 const gameURL = 'https://munsat.github.io/wordle-project/'
 
 console.log(wordOfTheGame);
@@ -46,6 +46,8 @@ const wordDisplay = document.querySelector('.word-display')
 const allRows = document.querySelectorAll('.line-holder')
 const socialIconFB = document.querySelector('.fa-facebook')
 const socialIconTwitter = document.querySelector('.fa-twitter')
+const instruction = document.querySelector('.instruction')
+const instructionDisplay = document.querySelector('.explanation-display')
 
 
 //Social Media PopUp Window
@@ -233,3 +235,7 @@ allKeys.forEach((key) => {
     })
   );
 });
+
+instruction.addEventListener('click', ()=>{
+  instructionDisplay.classList.toggle('exp-toggle-display')
+})
