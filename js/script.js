@@ -25,7 +25,7 @@ let isWinner = false
 const winnerTexts = ["GOOD JOB!", "WELL DONE", "WAY TO GO!", "WINNER!", "WOW!"];
 const green = 'rgb(96, 159, 141)'
 const orange = 'rgb(190, 101, 63)'
-const grey = ''
+const grey = 'rgb(120, 120, 120)'
 const gameURL = 'https://munsat.github.io/wordle-project/'
 
 console.log(wordOfTheGame);
