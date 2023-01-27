@@ -11,6 +11,8 @@
 html{
     width: 100%;
     overflow-x: hidden;
+    -ms-touch-action: manipulation;	/* IE10  */
+    touch-action: manipulation;		/* IE11+ */
 }
 body{
     font-family: 'Syne Mono', monospace;
