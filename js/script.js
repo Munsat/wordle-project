@@ -32,10 +32,15 @@ console.log(wordOfTheGame);
 
 //Audio
 const winSound =new Audio('./audio/gamewin.wav')
+winSound.preload = 'auto'
 const loseSound =new Audio('./audio/gameover.wav')
+loseSound.preload = 'auto'
 const keyStroke = new Audio('./audio/keystroke.wav')
+keyStroke.preload = 'auto'
 const enterKeySound = new Audio('./audio/incorrect.wav')
+enterKeySound.preload = 'auto'
 const invalidWord = new Audio('./audio/wrongword.wav')
+invalidWord.preload = 'auto'
 
 
 //DOM elements
@@ -110,8 +115,6 @@ if (darkThemeBtn.checked==false){
     document.body.classList.remove('light-theme')
 }
   
-
-
 
 
 //Displays letter for each line
