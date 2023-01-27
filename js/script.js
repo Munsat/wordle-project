@@ -54,7 +54,8 @@ const cancelBtn = document.querySelector('.cancel-btn')
 const invalidWordAlert = document.querySelector('.invalid-word-alert')
 const newGameBtn = document.querySelector('.new-game')
 const highestScoreText = document.querySelector('.highest-score span')
-const settingBtn = document.querySelector('.setting') 
+const darkThemeBtn = document.querySelector('#dark-theme')
+const hardModeBtn = document.querySelector('#hard-mode')
 
 
 //Social Media PopUp Window
@@ -99,6 +100,18 @@ if (!isNaN(parseInt(localStorage.getItem('highestScore')))){
   localStorage.setItem('highestScore',0) 
   highestScoreText.textContent = 0
 }
+
+//Local Storage for Modes
+darkThemeBtn.checked = (localStorage.getItem(darkThemeBtn.value)==='true')
+console.log(darkThemeBtn.checked)
+if (darkThemeBtn.checked==false){
+  document.body.classList.add('light-theme')
+}else{
+    document.body.classList.remove('light-theme')
+}
+  
+
+
 
 
 //Displays letter for each line
@@ -283,6 +296,17 @@ newGameBtn.addEventListener('click', ()=>{
   localStorage.setItem('score', 0)
 })
 
-settingBtn.addEventListener('click', ()=>{
-  document.body.classList.toggle('light-theme')
+darkThemeBtn.addEventListener('click', ()=>{
+  localStorage.setItem(darkThemeBtn.value, darkThemeBtn.checked)
+  console.log(darkThemeBtn.checked)
+  console.log(localStorage.getItem(darkThemeBtn.value))
+  debugger
+  if (localStorage.getItem(darkThemeBtn.value)==='false'){
+    document.body.classList.add('light-theme')
+  }else{
+    document.body.classList.remove('light-theme')
+  }
+    
 })
+  
+    

@@ -14,7 +14,7 @@
     ></script>
     <title>Wordle Game</title>
   </head>
-  <body class='light-theme'>
+  <body>
     <div class="container">
       <header>
         <h1>MY WORDLE</h1>
@@ -23,9 +23,22 @@
             <h2 class="current-score">Score: <span>000</span></h2>
             <h2 class="highest-score">Highest Score: <span>00</span></h2>
           </div>
-          <div>
-            <i class="fa-solid fa-circle-info fa-2xl instruction"></i>
-            <i class="fa-solid fa-gear fa-2xl setting"></i>
+          <div class="setting-container">
+            <i class="fa-solid fa-circle-info fa-2xl instruction"></i>    
+            <div class="dropdown">
+              <i class="fa-solid fa-gear fa-2xl setting"></i>        
+              <div class="dropdown-content">
+                <label for="dark-theme">
+                  <input type="checkbox" id="dark-theme" value="dark-theme">
+                  Dark Theme</label>
+                
+                <label for="hard-mode">
+                  <input type="checkbox" id="hard-mode" value="hard-mode">
+                  Hard Mode</label>
+              </div>
+            </div>
+            
+            
           </div>
           
         </nav>
