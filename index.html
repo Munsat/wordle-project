@@ -23,6 +23,10 @@
             <h2 class="current-score">Score: <span>000</span></h2>
             <h2 class="highest-score">Highest Score: <span>00</span></h2>
           </div>
+          <section class="countdown-timer">
+            <h2>Time left = <span class="clock">05:00</span></h2>
+            <h3 class="timer-result"></h3>
+          </section>
           <div class="setting-container">
             <i class="fa-solid fa-circle-info fa-2xl instruction"></i>    
             <div class="dropdown">
@@ -31,14 +35,8 @@
                 <label for="dark-theme">
                   <input type="checkbox" id="dark-theme" value="dark-theme">
                   Dark Theme</label>
-                
-                <label for="hard-mode">
-                  <input type="checkbox" id="hard-mode" value="hard-mode">
-                  Hard Mode</label>
               </div>
             </div>
-            
-            
           </div>
           
         </nav>
@@ -67,10 +65,10 @@
             </li>
           </ol>
         </section>
+
         <section class="game-end-display">
           <h1 class="title-large"></h1>
           <h2 class="score-display">Score: <span>0</span></h2>
-          
           <h2 class="word-display">Your word was: <span></span></h2>
           <div><a class="score-text" href="#"></a> </div>
           <div><a class='new-game' href="#">New Game</a></div>
@@ -78,6 +76,13 @@
           <i class="icon fa-brands fa-facebook fa-2xl"></i>
           <i class="icon fa-brands fa-twitter fa-2xl"></i>
         </section>
+
+        <section class="hard-mode-prompt">
+          <h2 class="hard-mode-question">Do you want to step up your game and add a 5 minute timer? <span></span></h2>
+          <button class="hard-mode">Yes</button>
+          <button class="easy-mode">No</button>
+        </section>
+        
       </section>
       <section class="keyboard">
         <div class="row" id="row-0">

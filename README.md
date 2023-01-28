@@ -1,5 +1,15 @@
-# wordle-project
-Project submission for GA flex course
+# Project Submission for GA flex course
+
+## Wordle Game
+
+
+My version of Wordle is called My Wordle. It is very similar to the actual Wordle game where the user have to guess the word in 6 chances and with each chance they are provided with clues as colored tiles.
+
+### Features:
+
+1. It has a difficulty option.If the user chooses Hard, they are given a 5 minute time limit. 
+
+
 
 
 
@@ -20,21 +30,13 @@ Project submission for GA flex course
 1. Added  soundeffects
 1. Share result online
 1. Did an explanation page.
-
-## Things to fix
-
-
-1. need to add styling
-
-- Need to DRY code. Too much repeatation.
-
-## To Do
-1. Time limits?
-1. The game will have 3 levels of difficulty.
-   - Hard: 3 guesses
-   - Medium: 6 guesses
-   - Easy: 10 guesses
+1. The game will a difficulty option.
+   - Hard: 5 minute time limit
 1. toggle dark-light mode   
+
+
+
+
 
 
 
