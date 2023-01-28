@@ -219,6 +219,12 @@ header{
     border-radius: 15px;
     border: none;
     background-color: rgb(230, 211, 220);
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+}
+
+.hard-mode:hover, .easy-mode:hover{
+    background-color: rgb(96, 159, 141);
 }
 .icon{
     color: white;
@@ -290,9 +296,9 @@ header{
     z-index: 20;
     padding: 3rem 5rem;
     border-radius: 20px;
-    visibility: hidden;
     opacity: 0;
-    transition: all 500ms ease-in-out;
+    visibility: hidden;
+    transition: all 300ms ease-in-out;
 
    
 }
@@ -364,7 +370,7 @@ header{
     z-index: 5;
 }
 .countdown-timer{
-    visibility: visible;
+    visibility: hidden;
     margin: 0;
 }
 .countdown-timer>h2{
@@ -391,5 +397,8 @@ header{
     }
     .cancel-btn{
         left:0
+    }
+    .countdown-timer{
+        display: none;
     }
   }

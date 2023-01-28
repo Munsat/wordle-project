@@ -23,6 +23,7 @@ let finalScore = 0;
 let highestScore = 0;
 let isWinner = false;
 let timeUp=false
+let isHardMode = false
 const winnerTexts = ["GOOD JOB!", "WELL DONE", "WAY TO GO!", "WINNER!", "WOW!"];
 const green = "rgb(96, 159, 141)";
 const orange = "rgb(190, 101, 63)";
@@ -31,12 +32,14 @@ const gameURL = "https://munsat.github.io/wordle-project/";
 
 console.log(wordOfTheGame);
 
+
 //Audio
 const winSound = new Audio("./audio/gamewin.wav");
 const loseSound = new Audio("./audio/gameover.wav");
 const keyStroke = new Audio("./audio/keystroke.wav");
 const enterKeySound = new Audio("./audio/incorrect.wav");
 const invalidWord = new Audio("./audio/wrongword.wav");
+
 
 //DOM elements
 userScore = document.querySelector(".score span");
@@ -74,8 +77,7 @@ socialIconFB.addEventListener("click", () => {
   window.open(
     `https://www.facebook.com/dialog/share?app_id=875082810399994&display=popup&hashtag=%23CheckOutMyWordle_${message}&href=https://munsat.github.io/wordle-project/&redirect_uri=https://munsat.github.io/wordle-project/`,
     "_blank",
-    windowParams
-  );
+    windowParams);
 });
 
 socialIconTwitter.addEventListener("click", () => {
@@ -83,16 +85,11 @@ socialIconTwitter.addEventListener("click", () => {
   if (finalScore > 0) {
     message = `Check out My Wordle. I scored ${finalScore} points!`;
   } else {
-    message = `Check out My Wordle. I scored ${localStorage.getItem(
-      "score"
-    )} points!`;
+    message = `Check out My Wordle. I scored ${localStorage.getItem("score")} points!`;
   }
-  window.open(
-    `https://twitter.com/intent/tweet?url=${gameURL}&text=${message}`,
-    "_blank",
-    windowParams
-  );
+  window.open(`https://twitter.com/intent/tweet?url=${gameURL}&text=${message}`,"_blank",windowParams);
 });
+
 
 //Local Storage for Score
 if (!isNaN(parseInt(localStorage.getItem("score")))) {
@@ -102,6 +99,7 @@ if (!isNaN(parseInt(localStorage.getItem("score")))) {
   userScore.textContent = 0;
 }
 
+
 //Local Storage for HighScore
 if (!isNaN(parseInt(localStorage.getItem("highestScore")))) {
   highestScoreText.textContent = localStorage.getItem("highestScore");
@@ -109,6 +107,7 @@ if (!isNaN(parseInt(localStorage.getItem("highestScore")))) {
   localStorage.setItem("highestScore", 0);
   highestScoreText.textContent = 0;
 }
+
 
 //Local Storage for ColorTheme
 darkThemeBtn.checked = localStorage.getItem(darkThemeBtn.value) === "true";
@@ -118,12 +117,14 @@ if (darkThemeBtn.checked == false) {
   document.body.classList.remove("light-theme");
 }
 
+
 //Displays letter for each line
 const displayLetter = (allLetter) => {
   for (i = 0; i < allLetter.length; i++) {
     allLetter[i].textContent = word[i];
   }
 };
+
 
 //Checks whether the word is part of the vocab
 const checkLetter = (word) => {
@@ -134,6 +135,7 @@ const checkLetter = (word) => {
   }
 };
 
+
 //Checks if the user has won the round
 const checkWinner = (allLetter) => {
   allLetter.forEach((letter) => {
@@ -142,8 +144,7 @@ const checkWinner = (allLetter) => {
     }
   });
   if (greenLength === 5) {
-    gameEndDisplay.querySelector("h1").textContent =
-      winnerTexts[Math.floor(Math.random() * winnerTexts.length)];
+    gameEndDisplay.querySelector("h1").textContent = winnerTexts[Math.floor(Math.random() * winnerTexts.length)];
     gameEndDisplay.querySelector("a").textContent = "Next Level";
     gameEndDisplay.style.opacity = 1;
     gameEndDisplay.style.visibility = "visible";
@@ -151,20 +152,18 @@ const checkWinner = (allLetter) => {
     winSound.play();
     isWinner = true;
     if (!isNaN(parseInt(localStorage.getItem("score")))) {
-      localStorage.setItem(
-        "score",
-        parseInt(localStorage.getItem("score")) + 1
-      );
-      if (
-        parseInt(localStorage.getItem("highestScore")) <
-        parseInt(localStorage.getItem("score"))
-      ) {
+      if(isHardMode){
+        localStorage.setItem("score",parseInt(localStorage.getItem("score")) + 3);
+      }else{
+        localStorage.setItem("score",parseInt(localStorage.getItem("score")) + 1);
+      }
+      if (parseInt(localStorage.getItem("highestScore")) < parseInt(localStorage.getItem("score"))
+      ){
         localStorage.setItem("highestScore", localStorage.getItem("score"));
       }
       userScore.textContent = localStorage.getItem("score");
       highestScoreText.textContent = localStorage.getItem("highestScore");
-      gameEndDisplay.querySelector(".score-display span").textContent =
-        localStorage.getItem("score");
+      gameEndDisplay.querySelector(".score-display span").textContent = localStorage.getItem("score");
     }
   } else if (rowNum < allRows.length - 1) {
     enterKeySound.play();
@@ -177,8 +176,7 @@ const checkGameOver = (rowNum) => {
   if (rowNum >= allRows.length - 1 && !isWinner ||timeUp===true) {
     gameEndDisplay.querySelector("h1").textContent = "GAME OVER";
     gameEndDisplay.querySelector("a").textContent = "Start Over";
-    gameEndDisplay.querySelector(".score-display span").textContent =
-      localStorage.getItem("score");
+    gameEndDisplay.querySelector(".score-display span").textContent = localStorage.getItem("score");
     gameEndDisplay.style.opacity = 1;
     wordDisplay.style.display = "block";
     wordDisplay.querySelector("span").textContent = wordOfTheGame;
@@ -204,10 +202,7 @@ const displayAnswer = (allLetter) => {
       allLetter[i].style.transform = "rotateY(360deg)";
       allLetter[i].style.backgroundColor = orange;
       allKeys.forEach((key) => {
-        if (
-          key.textContent === word[i] &&
-          key.style.backgroundColor !== green
-        ) {
+        if (key.textContent === word[i] && key.style.backgroundColor !== green) {
           key.style.backgroundColor = orange;
         }
       });
@@ -253,12 +248,7 @@ const keyAction = (e, allLetter) => {
     }
   } else if (
     word.length < 5 &&
-    ((e.key >= "a" && e.key <= "z") ||
-      (e.getModifierState("CapsLock") &&
-        e.key >= "A" &&
-        e.key <= "Z" &&
-        e.key.length === 1))
-  ) {
+    ((e.key >= "a" && e.key <= "z") || (e.getModifierState("CapsLock") && e.key >= "A" && e.key <= "Z" && e.key.length === 1))) {
     keyStroke.load();
     keyStroke.play();
     word += e.key.toUpperCase();
@@ -271,9 +261,7 @@ const keyAction = (e, allLetter) => {
 
 //Main function that is to be repeated for each row
 const repeatGame = (e) => {
-  let allLetter = document.querySelectorAll(
-    `.line-holder.row${rowNum} > .word-holder`
-  );
+  let allLetter = document.querySelectorAll(`.line-holder.row${rowNum} > .word-holder`);
   lineComplete = false;
   keyAction(e, allLetter);
 
@@ -293,11 +281,6 @@ const toggleDisplay = () => {
 
 
 //EVENT LISTENER
-easyModeBtn.addEventListener("click", () => {
-  hardModeDisplay.style.opacity = 0;
-  hardModeDisplay.style.visibility = "hidden";
-  countdownDisplay.style.visibility='hidden'
-});
 
 window.addEventListener("keyup",(keyHandler = (e) => {
   const isNumber = isFinite(e.key);
@@ -313,6 +296,28 @@ key.addEventListener("click",(clickHandler = (e) => {
 );
 });
 
+instruction.addEventListener("click", toggleDisplay);
+cancelBtn.addEventListener("click", toggleDisplay);
+newGameBtn.addEventListener("click", () => {
+  location.reload();
+  localStorage.setItem("score", 0);
+});
+
+darkThemeBtn.addEventListener("click", () => {
+  localStorage.setItem(darkThemeBtn.value, darkThemeBtn.checked);
+  if (localStorage.getItem(darkThemeBtn.value) === "false") {
+    document.body.classList.add("light-theme");
+  } else {
+    document.body.classList.remove("light-theme");
+  }
+});
+
+easyModeBtn.addEventListener("click", () => {
+  hardModeDisplay.style.opacity = 0;
+  hardModeDisplay.style.visibility = "hidden";
+});
+
+//Add timer to the game
 let timeLeft = 10;
 const checkSecond = (sec) => {
   if (sec < 10 && sec >= 0) {
@@ -322,12 +327,12 @@ const checkSecond = (sec) => {
   }
   return sec;
 };
-
-//ADD timer to the game
 hardModeBtn.addEventListener("click", () => {
+  isHardMode = true
   hardModeDisplay.style.opacity = 0;
   hardModeDisplay.style.visibility = "hidden";
-  countdownDisplay.style.visibility='visible'
+  countdownDisplay.style.visibility='visible';
+  countdownDisplay.style.display = 'block'
   const intervalID = setInterval(() => {
     presentTime = timer.innerHTML;
     timeArray = presentTime.split(":");
@@ -347,18 +352,4 @@ hardModeBtn.addEventListener("click", () => {
   }, 1000);
 });
 
-instruction.addEventListener("click", toggleDisplay);
-cancelBtn.addEventListener("click", toggleDisplay);
-newGameBtn.addEventListener("click", () => {
-  location.reload();
-  localStorage.setItem("score", 0);
-});
 
-darkThemeBtn.addEventListener("click", () => {
-  localStorage.setItem(darkThemeBtn.value, darkThemeBtn.checked);
-  if (localStorage.getItem(darkThemeBtn.value) === "false") {
-    document.body.classList.add("light-theme");
-  } else {
-    document.body.classList.remove("light-theme");
-  }
-});
