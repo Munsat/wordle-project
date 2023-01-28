@@ -8,31 +8,17 @@ My version of Wordle is called My Wordle. It is very similar to the actual Wordl
 ### Features:
 
 1. It has a difficulty option.If the user chooses Hard, they are given a 5 minute time limit. 
-
-
-
-
-
-1. Create 5 boxes and necessary lines depending on level of difficulty for user entry
-
-1. Create a keyboard with backspace and enter (just uppercase)
-
-1. User should be able to click and use keyboard to enter letter
-
-1. Enter should be disabled before all letters are filled. Once filled, enter should do an alert if the word is not in vocabulary
-
-1. If in vocab, check if the any letter present is correct and in right place, then make it green; if letter is present but in wrong place, make it yellow; all other letter should be grey
-
+1. The game has a color toggle mode, so user can play in both light and dark mode.
+1. User can use both mouse and keyboard to enter letter
 1. Once all lines are filled, and the word is not right, then show GAMEOVER, otherwise show YOU'VE WON!
-
-1. Keep track of score 
+1. Keeps track of score 
 1. Added functionality for keyboard color
 1. Added  soundeffects
-1. Share result online
+1. Share result online - facebook and twitter
 1. Did an explanation page.
-1. The game will a difficulty option.
-   - Hard: 5 minute time limit
-1. toggle dark-light mode   
+1. Added functionality so that highscore and current score is stored even if refreshed.
+
+
 
 
 

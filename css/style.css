@@ -389,4 +389,7 @@ header{
     .explanation-display>*{
         font-size: .9rem;
     }
+    .cancel-btn{
+        left:0
+    }
   }

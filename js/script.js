@@ -22,7 +22,6 @@ let greenLength = 0;
 let finalScore = 0;
 let highestScore = 0;
 let isWinner = false;
-let hardMode = false;
 let timeUp=false
 const winnerTexts = ["GOOD JOB!", "WELL DONE", "WAY TO GO!", "WINNER!", "WOW!"];
 const green = "rgb(96, 159, 141)";
@@ -34,15 +33,10 @@ console.log(wordOfTheGame);
 
 //Audio
 const winSound = new Audio("./audio/gamewin.wav");
-winSound.preload = "auto";
 const loseSound = new Audio("./audio/gameover.wav");
-loseSound.preload = "auto";
 const keyStroke = new Audio("./audio/keystroke.wav");
-keyStroke.preload = "auto";
 const enterKeySound = new Audio("./audio/incorrect.wav");
-enterKeySound.preload = "auto";
 const invalidWord = new Audio("./audio/wrongword.wav");
-invalidWord.preload = "auto";
 
 //DOM elements
 userScore = document.querySelector(".score span");
@@ -93,7 +87,6 @@ socialIconTwitter.addEventListener("click", () => {
       "score"
     )} points!`;
   }
-
   window.open(
     `https://twitter.com/intent/tweet?url=${gameURL}&text=${message}`,
     "_blank",
