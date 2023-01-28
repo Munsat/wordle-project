@@ -112,7 +112,6 @@ if (!isNaN(parseInt(localStorage.getItem("highestScore")))) {
 
 //Local Storage for ColorTheme
 darkThemeBtn.checked = localStorage.getItem(darkThemeBtn.value) === "true";
-console.log(darkThemeBtn.checked);
 if (darkThemeBtn.checked == false) {
   document.body.classList.add("light-theme");
 } else {
@@ -332,7 +331,6 @@ hardModeBtn.addEventListener("click", () => {
   const intervalID = setInterval(() => {
     presentTime = timer.innerHTML;
     timeArray = presentTime.split(":");
-    console.log(timeArray);
     let m = timeArray[0];
     let s = checkSecond(timeArray[1] - 1);
     if (s == 59) {

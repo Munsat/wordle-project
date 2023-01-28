@@ -350,7 +350,7 @@ header{
 .invalid-word-alert{
     display: block;
     position: absolute;
-    background-color: #ccc;
+    background-color: rgb(190, 101, 63);
     color: black;
     padding: .2rem;
     width: 10rem;
