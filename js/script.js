@@ -287,13 +287,11 @@ window.addEventListener("keyup",(keyHandler = (e) => {
   if (!isNumber) {
     repeatGame(e);
   }
-})
-);
+}));
 allKeys.forEach((key) => {
 key.addEventListener("click",(clickHandler = (e) => {
   repeatGame(e);
-  })
-);
+  }));
 });
 
 instruction.addEventListener("click", toggleDisplay);
@@ -353,3 +351,23 @@ hardModeBtn.addEventListener("click", () => {
 });
 
 
+//MUTE AUDIO FOR MOBILE SCREEN
+const audioControl = (x) => {
+  if (x.matches) { // If media query matches
+    winSound.muted = true 
+    loseSound.muted = true 
+    keyStroke.muted = true  
+    enterKeySound.muted = true  
+    invalidWord.muted = true 
+  } else {
+    winSound.muted = false 
+    loseSound.muted = false 
+    keyStroke.muted = false  
+    enterKeySound.muted = false  
+    invalidWord.muted = false
+  }
+}
+
+const x = window.matchMedia("(max-width: 35em)")
+audioControl(x) 
+x.addEventListener('change', audioControl) // Attach listener function on state changes

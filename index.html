@@ -3,17 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/wordle-words.js" defer></script>
     <script src="js/script.js" defer></script>
-    <script
-      src="https://kit.fontawesome.com/3e19fd37f7.js"
-      crossorigin="anonymous"
-      defer
-    ></script>
+    <script src="https://kit.fontawesome.com/3e19fd37f7.js" crossorigin="anonymous" defer></script>
     <title>Wordle Game</title>
   </head>
+  
   <body>
     <div class="container">
       <header>
@@ -28,40 +25,50 @@
             <h3 class="timer-result"></h3>
           </section>
           <div class="setting-container">
-            <i class="fa-solid fa-circle-info fa-2xl instruction"></i>    
+            <i class="fa-solid fa-circle-info fa-2xl instruction"></i>
             <div class="dropdown">
-              <i class="fa-solid fa-gear fa-2xl setting"></i>        
+              <i class="fa-solid fa-gear fa-2xl setting"></i>
               <div class="dropdown-content">
                 <label for="dark-theme">
-                  <input type="checkbox" id="dark-theme" value="dark-theme">
+                  <input type="checkbox" id="dark-theme" value="dark-theme" />
                   Dark Theme</label>
               </div>
             </div>
           </div>
-          
         </nav>
-        
       </header>
+
       <section class="display-box">
+        
         <div class="invalid-word-alert">Invalid Word!</div>
+
         <section class="explanation-display">
           <i class="fa-solid fa-xmark cancel-btn"></i>
           <h2>How to play:</h2>
           <h3>Guess the word in 6 chances.</h3>
           <ol>
             <li>Each guess has to be a valid 5 letter word.</li>
-            <li>The colour of the tiles will change depending on how close your guess was to the word.</li>
+            <li>
+              The colour of the tiles will change depending on how close your
+              guess was to the word.
+            </li>
             <li class="exp-tile-container">
               <div class="word-holder exp-tile exp-tile-correct">W</div>
-              <div class="exp-tile-text">= The letter is in the word and in the correct spot.</div>
+              <div class="exp-tile-text">
+                = The letter is in the word and in the correct spot.
+              </div>
             </li>
             <li class="exp-tile-container">
               <div class="word-holder exp-tile exp-tile-inword">W</div>
-              <div class="exp-tile-text">= The letter is in the word but in the wrong spot.</div>
+              <div class="exp-tile-text">
+                = The letter is in the word but in the wrong spot.
+              </div>
             </li>
             <li class="exp-tile-container">
               <div class="word-holder exp-tile exp-tile-notinword">W</div>
-              <div class="exp-tile-text">= The letter is not in the word at all.</div>
+              <div class="exp-tile-text">
+                = The letter is not in the word at all.
+              </div>
             </li>
           </ol>
         </section>
@@ -70,20 +77,24 @@
           <h1 class="title-large"></h1>
           <h2 class="score-display">Score: <span>0</span></h2>
           <h2 class="word-display">Your word was: <span></span></h2>
-          <div><a class="score-text" href="#"></a> </div>
-          <div><a class='new-game' href="#">New Game</a></div>
+          <div><a class="score-text" href="#"></a></div>
+          <div><a class="new-game" href="#">New Game</a></div>
           <h2>Share you result on:</h2>
           <i class="icon fa-brands fa-facebook fa-2xl"></i>
           <i class="icon fa-brands fa-twitter fa-2xl"></i>
         </section>
 
         <section class="hard-mode-prompt">
-          <h2 class="hard-mode-question">Do you want to step up your game and add a 5 minute timer? <span></span></h2>
+          <h2 class="hard-mode-question">
+            Do you want to step up your game and add a 5 minute timer?
+            <span></span>
+          </h2>
           <button class="hard-mode">Yes</button>
           <button class="easy-mode">No</button>
         </section>
-        
+
       </section>
+
       <section class="keyboard">
         <div class="row" id="row-0">
           <button class="key">Q</button>
@@ -122,7 +133,6 @@
           </button>
         </div>
       </section>
-     
     </div>
   </body>
 </html>
