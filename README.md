@@ -20,13 +20,4 @@ My version of Wordle is called My Wordle. It is very similar to the actual Wordl
 
 
 
-
-
-
-
-
-
-
 https://munsat.github.io/wordle-project/
-https://freesound.org/
-https://www.w3schools.com/howto/howto_css_dropdown.asp
